@@ -25,10 +25,7 @@ const getRecipesFromApi = async () => {
         e.steps.map((el) => el.step)
       ),
       img: e.image,
-      vegetarian: e.vegetarian,
-      vegan: e.vegan,
-      glutenFree: e.glutenFree,
-      diets: e.diets.map((e) => e),
+      diets: e.diets
     };
   });
   return info;
@@ -81,21 +78,38 @@ const getAllDiets = async () => {
 // const getRecipesByParams
 // const getTypesOfRecipes
 // const PostRecipe
+// router.get("/recipes", async (req, res) => {
+//   const { name } = req.query;
+//   let recipes = await getAllRecipes();
+//   if (name) {
+//     let queryRecipe = await recipes.filter((e) =>
+//       e.name.toLowerCase().includes(name.toLowerCase())
+//     );
+//     if (queryRecipe.length) {
+//       res.status(200).send(queryRecipe);
+//     } else {
+//       res.status(404).send("Esta receta no existe");
+//     }
+//   } else {
+//     res.status(200).send(recipes);
+//   }
+// });
 router.get("/recipes", async (req, res) => {
   const { name } = req.query;
-  let recipes = await getAllRecipes();
-  if (name) {
-    let queryRecipe = await recipes.filter((e) =>
-      e.name.toLowerCase().includes(name.toLowerCase())
-    );
-    if (queryRecipe.length) {
-      res.status(200).send(queryRecipe);
-    } else {
-      res.status(404).send("Esta receta no existe");
-    }
-  } else {
-    res.status(200).send(recipes);
-  }
+
+      const recipesTotal = await getAllRecipes()
+      if (name) {
+          let recipeTitle = await recipesTotal.filter((r) =>
+              r.title.toLowerCase().includes(
+                  name.toLowerCase())
+          );
+          recipeTitle.length
+              ? res.status(200).json(recipeTitle)
+              : res.status(400).send("This recipe doesn't exist");
+      } else {
+          res.status(200).json(recipesTotal);
+      }
+
 });
 
 router.get("/recipes/:id", async (req, res) => {
