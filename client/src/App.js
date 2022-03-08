@@ -7,6 +7,8 @@ import Home from "./components/Home";
 
 import RecipeDetail from './components/RecipeDetail'
 
+import Form from "./components/Form";
+
 function App() {
   return (
     <BrowserRouter>
@@ -14,9 +16,11 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage/>} />
 
-          <Route exact path="/home" element={<Home/>} />
+          <Route  path="/home" element={<Home/>} />
 
-          <Route exact path='/recipe' element={<RecipeDetail/>} />
+          <Route  path='/recipe/:id' element={<RecipeDetail/>} />
+
+          <Route  path='/form' element={<Form/>} />
         </Routes>
       </div>
     </BrowserRouter>

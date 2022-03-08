@@ -2,16 +2,17 @@ import React from 'react';
 // import '../css/Paginado.css'
 
 
-export default function Paginado({ recipes, recipesPerPage, paginado }) {
-    const numbersPage = []
-    console.log(Math.ceil(recipes/recipesPerPage))
-    for (let i = 1; i <= Math.ceil(recipes / recipesPerPage); i++) {
-        numbersPage.push(i)
+export default function Paginado({ allRecipes, recipesPerPage, paginado }) {
+    const pageNumber = []
+    console.log(Math.ceil(allRecipes/recipesPerPage))
+    for (let i = 1; i <= Math.ceil(allRecipes / recipesPerPage); i++) {
+        pageNumber.push(i)
     }
+    console.log(allRecipes)
 
     return (
         <nav className='button'>
-            {numbersPage && numbersPage.map(number => (
+            {pageNumber?.map(number => (
                     <button key={number} onClick={() => paginado(number)}>{number}</button>
                 ))}
             

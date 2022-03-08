@@ -1,14 +1,20 @@
 const initialState = {
-    recipes : []
+    recipes : [],
+    recipeDetail: []
 }
 
 
-function reducer (state= initialState, actions){
-    switch(actions.type){
+function reducer (state= initialState, {type, payload}){
+    switch(type){
         case 'GET_RECIPES':
             return{
                 ...state,
-                recipes : actions.payload
+                recipes : payload
+            }
+        case 'GET_RECIPES_DETAIL':
+            return{
+                ...state,
+                recipeDetail : payload
             }
         default: return {...state}
     }

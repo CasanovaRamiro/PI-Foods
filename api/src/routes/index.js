@@ -117,7 +117,7 @@ router.get("/recipes/:id", async (req, res) => {
   let recipes = await getAllRecipes();
   //   console.log(recipes)
   let paramsRecipe = await recipes.find((e) => Number(e.id) === Number(id));
-  console.log(paramsRecipe);
+  // console.log(paramsRecipe);
   if (paramsRecipe) {
     res.status(200).send(paramsRecipe);
   } else {
