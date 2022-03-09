@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../actions";
+import { getRecipes, filterByDiet } from "../actions";
 import Card from "./Card";
 import { NavLink } from "react-router-dom";
 import Paginado from "./Paginado";
@@ -15,25 +15,31 @@ export default function Home() {
   const indexOfLastRecipe = actualPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  
+
 
   const paginado = (numPage)=>{
     setActualPage(numPage)
   }
+  
   useEffect(() => {
     console.log("recipes arrived");
     dispatch(getRecipes());
   }, [dispatch]);
 
-  {
-    // console.log("recipesss", allRecipes);
-  }
+  
   function handleReload(e) {
     e.preventDefault();
     dispatch(getRecipes());
   }
 
+  function handleDietFilter(e){
+    e.preventDefault();
+    dispatch(filterByDiet(e.target.value))
+  }
+
   
-  // console.log(allRecipes)
+
 
   return (
     <div>
@@ -50,7 +56,7 @@ export default function Home() {
           <option value="des">From Z to A</option>
         </select>
         {/* filter by Diet Type */}
-        <select>
+        <select onChange={e=>handleDietFilter(e)}>
           <option value="All">All</option>
           <option value="gluten free">Gluten Free</option>
           <option value="ketogenic">Ketogenic</option>
@@ -72,7 +78,9 @@ export default function Home() {
       </div>
 
       <div className="li-container">
-        {currentRecipes?.map((recipe) => {
+        {
+          currentRecipes.length === 0? <h1>The recipes you were looking for were not found, sorry!</h1> :
+        currentRecipes?.map((recipe) => {
           return (
             <div key={recipe.id}>
               <NavLink
@@ -88,7 +96,9 @@ export default function Home() {
               </NavLink>
             </div>
           );
-        })}
+        })
+        
+        }
       </div>
       <Paginado
         allRecipes={allRecipes.length}

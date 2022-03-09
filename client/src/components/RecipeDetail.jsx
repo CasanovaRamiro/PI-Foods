@@ -6,15 +6,15 @@ import { getRecipesDetail } from "../actions";
 export default function RecipeDetail() {
   const dispatch = useDispatch();
   const recipeDetail = useSelector((state) => state.recipeDetail);
-  const [detail, setDetail] = useState(recipeDetail)
+  
   const {id}= useParams()
-  console.log('el id es=' ,id)
+  // console.log('el id es=' ,id)
   useEffect(() => {
     console.log("recipe detail arrived");
     dispatch(getRecipesDetail(id));
   }, [dispatch, id]);
   
-  console.log('detail' ,detail)
+  
   console.log('recipe detail',recipeDetail)
 
 

@@ -20,3 +20,11 @@ export function getRecipesDetail(id) {
     });
   };
 }
+
+export function filterByDiet(diet){
+  console.log(diet)
+  return ({
+    type: "FILTER_DIETS",
+    payload: diet,
+  });
+}

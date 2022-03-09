@@ -4,11 +4,11 @@ import React from 'react';
 
 export default function Paginado({ allRecipes, recipesPerPage, paginado }) {
     const pageNumber = []
-    console.log(Math.ceil(allRecipes/recipesPerPage))
+    // console.log(Math.ceil(allRecipes/recipesPerPage))
     for (let i = 1; i <= Math.ceil(allRecipes / recipesPerPage); i++) {
         pageNumber.push(i)
     }
-    console.log(allRecipes)
+    // console.log(allRecipes)
 
     return (
         <nav className='button'>
