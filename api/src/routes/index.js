@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const axios = require("axios");
 const { Recipe, Diet } = require("../db");
-const { API_KEY } = process.env;
+const { API_KEY, API_KEYS } = process.env;
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -11,7 +11,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 const getRecipesFromApi = async () => {
   const apiUrl = await axios.get(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEYS}&addRecipeInformation=true`
   );
   //   console.log(await apiUrl.data.results.analyzedInstructions);
   const info = await apiUrl.data.results.map((e) => {
@@ -25,7 +25,7 @@ const getRecipesFromApi = async () => {
         e.steps.map((el) => el.step)
       ),
       img: e.image,
-      diets: e.diets
+      diets: e.diets,
     };
   });
   return info;
@@ -70,46 +70,29 @@ const getAllDiets = async () => {
     });
   });
   const dietTypes = await Diet.findAll();
-  console.log(dietTypes);
-  return dietTypes;
+  // console.log(dietTypes);
+  return dietTypes ;
 };
 
 // const getRecipesByQuery
 // const getRecipesByParams
 // const getTypesOfRecipes
 // const PostRecipe
-// router.get("/recipes", async (req, res) => {
-//   const { name } = req.query;
-//   let recipes = await getAllRecipes();
-//   if (name) {
-//     let queryRecipe = await recipes.filter((e) =>
-//       e.name.toLowerCase().includes(name.toLowerCase())
-//     );
-//     if (queryRecipe.length) {
-//       res.status(200).send(queryRecipe);
-//     } else {
-//       res.status(404).send("Esta receta no existe");
-//     }
-//   } else {
-//     res.status(200).send(recipes);
-//   }
-// });
 router.get("/recipes", async (req, res) => {
   const { name } = req.query;
-
-      const recipesTotal = await getAllRecipes()
-      if (name) {
-          let recipeTitle = await recipesTotal.filter((r) =>
-              r.title.toLowerCase().includes(
-                  name.toLowerCase())
-          );
-          recipeTitle.length
-              ? res.status(200).json(recipeTitle)
-              : res.status(400).send("This recipe doesn't exist");
-      } else {
-          res.status(200).json(recipesTotal);
-      }
-
+  let recipes = await getAllRecipes();
+  if (name) {
+    let queryRecipe = await recipes.filter((e) =>
+      e.name.toLowerCase().includes(name.toLowerCase())
+    );
+    if (queryRecipe.length) {
+      res.status(200).send(queryRecipe);
+    } else {
+      res.status(404).send("Esta receta no existe");
+    }
+  } else {
+    res.status(200).send(recipes);
+  }
 });
 
 router.get("/recipes/:id", async (req, res) => {
@@ -133,7 +116,7 @@ router.get("/types", async (req, res) => {
 router.post("/recipe", async (req, res) => {
   const { name, dishRes, dishScore, healthyScore, stepByStep, img, diets } =
     req.body;
-  
+  console.log('este ese el consolelog!!!!!!!' ,diets)
   let createdRecipe = await Recipe.create({
     name,
     dishRes,
@@ -145,10 +128,10 @@ router.post("/recipe", async (req, res) => {
   let recipeDiet = await Diet.findAll({
     where: { name: diets },
   });
+
   createdRecipe.addDiet(recipeDiet);
   console.log(createdRecipe);
   res.status(200).send("recipe added successfully");
-  
 });
 
 // GET /recipes
