@@ -14,6 +14,7 @@ function reducer(state = initialState, { type, payload }) {
         recipesStorage: payload,
       };
     case "GET_RECIPES_DETAIL":
+      console.log(payload)
       return {
         ...state,
         recipeDetail: payload,

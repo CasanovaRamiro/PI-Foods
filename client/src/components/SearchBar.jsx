@@ -17,9 +17,9 @@ export default function SearchBar() {
     dispatch(getRecipesByName(name))
   }
   return (
-    <div>
-      <input type="text" placeholder="Search Recipes.." onChange={e=> handleInput(e)} />
-      <button type="submit" onClick={e=> handleSubmit(e)}>Search</button>
+    <div className="search-bar">
+      <input  type="text" placeholder="Search Recipes.." onChange={e=> handleInput(e)} />
+      <button className=" orange" type="submit" onClick={e=> handleSubmit(e)}>Search</button>
     </div>
   );
 }

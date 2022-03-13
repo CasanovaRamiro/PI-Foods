@@ -11,7 +11,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 const getRecipesFromApi = async () => {
   const apiUrl = await axios.get(
-    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEYS}&addRecipeInformation=true`
+    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`
   );
   //   console.log(await apiUrl.data.results.analyzedInstructions);
   const info = await apiUrl.data.results.map((e) => {
@@ -99,7 +99,7 @@ router.get("/recipes/:id", async (req, res) => {
   const { id } = req.params;
   let recipes = await getAllRecipes();
   //   console.log(recipes)
-  let paramsRecipe = await recipes.find((e) => Number(e.id) === Number(id));
+  let paramsRecipe = await recipes.find((e) => parseInt(e.id) === parseInt(id));
   // console.log(paramsRecipe);
   if (paramsRecipe) {
     res.status(200).send(paramsRecipe);
@@ -116,7 +116,7 @@ router.get("/types", async (req, res) => {
 router.post("/recipe", async (req, res) => {
   const { name, dishRes, dishScore, healthyScore, stepByStep, img, diets } =
     req.body;
-  console.log('este ese el consolelog!!!!!!!' ,diets)
+  // console.log('este ese el consolelog!!!!!!!' ,diets)
   let createdRecipe = await Recipe.create({
     name,
     dishRes,

@@ -7,7 +7,7 @@ export default function LandingPage() {
       <div className="landing">
         <h2>Welcome to this Recipes Project!</h2>
       <Link to='/home'>
-        <button>Start Now!</button>
+        <button className="button medium regular red">Start Now!</button>
       </Link></div>
         
     </div>

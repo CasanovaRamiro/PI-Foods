@@ -2,21 +2,32 @@
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
-    background-color: burlywood;
-    color: black;
+    background-color: #FFECD1;
+    position: relative;
+    
+    color: #232323;
 
     border-color: rgb(37, 35, 35);
     border-style: solid;
     border-radius: 10px;
     border-width: 2px;
-    margin-top: 5px;
-    margin-left: 2px;
-    margin-right: 2px;
+    margin: 10px 5px;
     max-width: 22rem;
     height: fit-content;
     width: 20rem;
     min-height: 25rem;
 
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 3);
+
+
+}
+.card-container img{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.card-container:hover {
+    transform: scale(1.02);
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 3);
 }
 .dn-container{
     display: flex;

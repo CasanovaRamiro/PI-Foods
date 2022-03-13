@@ -12,12 +12,13 @@ import SearchBar from "./SearchBar";
 import { NavLink } from "react-router-dom";
 import Paginado from "./Paginado";
 import "../styles/Home.css";
+import Nav from "./Nav";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
   const [actualPage, setActualPage] = useState(1);
-  const [recipesPerPage, setRecipesPerPage] = useState(1); // Me guardo cuantos perros quiero por página.
+  const [recipesPerPage, setRecipesPerPage] = useState(9); // Me guardo cuantos perros quiero por página.
   const indexOfLastRecipe = actualPage * recipesPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const currentRecipes = allRecipes.slice(
@@ -61,46 +62,42 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Your Favorite Recipes Page</h1>
-      <NavLink to="/form">
-        <button>Create Recipe</button>
-      </NavLink>
-      <NavLink to={"/"}>
-        <button>Landing</button>
-      </NavLink>
-      <button onClick={(e) => handleReload(e)}>Reset Filters</button>
-      <SearchBar/>
-      <div>
+      <Nav/>
+       <div className="title-container"><h1 className="title">Your Favorite Recipes Page!</h1></div>
+      <div className="filters">
+       
+
         {/* order by Alphabet */}
-        <select onChange={(e) => handleOrderByAlphabet(e)}>
-          <option selected disabled>Order Alphabetically!</option>
-          <option value="asc">From A to Z</option>
-          <option value="des">From Z to A</option>
+        <select className="select" onChange={(e) => handleOrderByAlphabet(e)}>
+          <option className="option top-option" selected disabled>Order Alphabetically!</option>
+          <option className="option" value="asc">From A to Z</option>
+          <option className="option bottom-option" value="des">From Z to A</option>
         </select>
         {/* filter by Diet Type */}
-        <select onChange={(e) => handleDietFilter(e)}>
-          <option selected disabled>Choose By Diet!</option>
-          <option value="All">All</option>
-          <option value="gluten free">Gluten Free</option>
-          <option value="ketogenic">Ketogenic</option>
-          <option value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>
-          <option value="vegan">Vegan</option>
-          <option value="pescatarian">Pescatarian</option>
-          <option value="paleolithic">Paleolithic</option>
-          <option value="primal">Primal</option>
-          <option value="fodmap friendly">Fodmap Friendly</option>
-          <option value="dairy free">Dairy Free</option>
-          <option value="whole 30">Whole 30</option>
+        <select className="select" onChange={(e) => handleDietFilter(e)}>
+          <option className="option" disabled selected >Choose By Diet!</option>
+          <option className="option" value="All">All</option>
+          <option className="option" value="gluten free">Gluten Free</option>
+          <option className="option" value="ketogenic">Ketogenic</option>
+          <option className="option" value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>
+          <option className="option" value="vegan">Vegan</option>
+          <option className="option" value="pescatarian">Pescatarian</option>
+          <option className="option" value="paleolithic">Paleolithic</option>
+          <option className="option" value="primal">Primal</option>
+          <option className="option" value="fodmap friendly">Fodmap Friendly</option>
+          <option className="option" value="dairy free">Dairy Free</option>
+          <option className="option" value="whole 30">Whole 30</option>
         </select>
         {/* order by Score */}
-        <select onChange={(e) => handleOrderByScore(e)}>
-          <option selected disabled>Order By Score!</option>
-          <option value="high">Highest Score</option>
-          <option value="low">Lowest Score</option>
+        <select className="select" onChange={(e) => handleOrderByScore(e)}>
+          <option className="option" selected disabled>Order By Score!</option>
+          <option className="option" value="high">Highest Score</option>
+          <option className="option" value="low">Lowest Score</option>
         </select>
+        <button className="select" onClick={(e) => handleReload(e)}>Reset Filters</button>
       </div>
 
-      <div className="li-container">
+      <div className="card-board">
         {currentRecipes.length === 0 ? (
           <h1>The recipes you were looking for were not found, sorry!</h1>
         ) : (

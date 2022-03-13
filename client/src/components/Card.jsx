@@ -20,7 +20,7 @@ export default function Card({name, img, diets, score }) {
     })
       
       }</h5>
-      <h3>{score}</h3>
+      <h3 className="card-score">{score}</h3>
     </div>
   );
 }
