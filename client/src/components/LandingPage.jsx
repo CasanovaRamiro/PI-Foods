@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function LandingPage() {
   return (
-    <div className='landing-container'>
+    <div >
       <div className="landing">
         <h2>Welcome to this Recipes Project!</h2>
       <Link to='/home'>

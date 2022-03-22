@@ -62,7 +62,9 @@ export default function Home() {
 
   return (
     <div>
+      
       <Nav/>
+      
        <div className="title-container"><h1 className="title">Your Favorite Recipes Page!</h1></div>
       <div className="filters">
        

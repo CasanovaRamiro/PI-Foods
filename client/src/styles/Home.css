@@ -1,3 +1,7 @@
+.landing{
+  margin-top: 10%;
+  font-size: 2rem;
+}
 .title{
     display: flex;
     justify-content: space-around;
@@ -30,6 +34,11 @@
 body {
   background-color: #ffecd1;
   color: #232323;
+  background-image: url(./background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
 }
 
 /* ///////////////////////////// butons */
@@ -280,8 +289,8 @@ background-color: rgba(9, 250, 9, 0.592);
     display: flex;
     margin: 10px 10px;
 }
-.detail-img-res-container p{
-    font-size: 12px;
+.detail-img-res-container div{
+    font-size: 14px;
     border-radius: 5px;
     border: 1px solid #bbbbbb;
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 3);

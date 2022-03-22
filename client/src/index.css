@@ -7,25 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.landing{
-  align-self: center;
-  background-image: url('https://i.pinimg.com/564x/ec/64/db/ec64db62630362dcae3e83281c5fdd22.jpg');
-  background-repeat: no-repeat;
-  height: 600px;
-  width: 600px;
-} 
-.landing h2 {
-  margin-top:  350px;
-  font-size: 25px;
-}
-.landing-container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: aliceblue;
 
-
-}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
