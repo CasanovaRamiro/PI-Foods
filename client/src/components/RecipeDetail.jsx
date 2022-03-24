@@ -30,7 +30,7 @@ export default function RecipeDetail() {
         <h1>{recipeDetail.name}</h1>
         <div className="detail-img-res-container">
           <img src={recipeDetail.img} alt="recipe img" />
-          <div><h1>Resume:</h1><p>{recipeDetail.dishRes}</p></div>
+          <div><h1>Resume:</h1><p dangerouslySetInnerHTML={{__html: recipeDetail.dishRes}}></p></div>
           
         </div>
         <h3>Diets:</h3>
