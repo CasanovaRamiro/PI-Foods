@@ -62,12 +62,12 @@ export default function Home() {
 
   return (
     <div>
-      
-      <Nav/>
-      
-       <div className="title-container"><h1 className="title">Your Favorite Recipes Page!</h1></div>
+
+      <Nav />
+
+      <div className="title-container"><h1 className="title">Your Favorite Recipes Page!</h1></div>
       <div className="filters">
-       
+
 
         {/* order by Alphabet */}
         <select className="select" onChange={(e) => handleOrderByAlphabet(e)}>
@@ -114,7 +114,7 @@ export default function Home() {
                     name={recipe.name}
                     img={recipe.img}
                     diets={recipe.diets}
-                    score={recipe.dishScore}
+                    score={recipe.dishScore ? recipe.dishScore : recipe.healthyScore}
                     id={recipe.id}
                   />
                 </NavLink>

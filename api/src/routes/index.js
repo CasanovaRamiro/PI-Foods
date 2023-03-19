@@ -2,13 +2,9 @@ const { Router } = require("express");
 const axios = require("axios");
 const { Recipe, Diet } = require("../db");
 const { API_KEY, API_KEYS } = process.env;
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
 
 const router = Router();
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
 const getRecipesFromApi = async () => {
   const apiUrl = await axios.get(
     `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`
@@ -70,8 +66,7 @@ const getAllDiets = async () => {
     });
   });
   const dietTypes = await Diet.findAll();
-  // console.log(dietTypes);
-  return dietTypes ;
+  return dietTypes;
 };
 
 // const getRecipesByQuery
@@ -98,9 +93,7 @@ router.get("/recipes", async (req, res) => {
 router.get("/recipes/:id", async (req, res) => {
   const { id } = req.params;
   let recipes = await getAllRecipes();
-  //   console.log(recipes)
   let paramsRecipe = await recipes.find((e) => parseInt(e.id) === parseInt(id));
-  // console.log(paramsRecipe);
   if (paramsRecipe) {
     res.status(200).send(paramsRecipe);
   } else {
@@ -116,7 +109,6 @@ router.get("/types", async (req, res) => {
 router.post("/recipe", async (req, res) => {
   const { name, dishRes, dishScore, healthyScore, stepByStep, img, diets } =
     req.body;
-  // console.log('este ese el consolelog!!!!!!!' ,diets)
   let createdRecipe = await Recipe.create({
     name,
     dishRes,
