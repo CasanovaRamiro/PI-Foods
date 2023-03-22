@@ -3,27 +3,23 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import { getRecipesDetail } from "../actions";
+import css from '../styles/Detail.module.css'
 import Nav from "./Nav";
 export default function RecipeDetail() {
   const dispatch = useDispatch();
   const recipeDetail = useSelector((state) => state.recipeDetail);
 
   const { id } = useParams();
-  // console.log('el id es=' ,id)
   useEffect(() => {
-    console.log("recipe detail arrived");
     dispatch(getRecipesDetail(id));
   }, [dispatch, id]);
 
   let diet = []
-  //  diet = 
   if (recipeDetail.diets?.name) { recipeDetail.diets.map(e => diet.push(e.name)) } else { diet = recipeDetail.diets }
   return (
     <div>
       <Nav />
-      <div className="title-container">
-        <h1 className="title">Recipe Detail</h1>
-      </div>
+
       <div className="detail-container">
         <h1>{recipeDetail.name}</h1>
         <div className="detail-img-res-container">
