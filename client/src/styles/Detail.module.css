@@ -1,38 +1,57 @@
-.detail-container {
+.container {
   display: flex;
+  backdrop-filter: blur(5px);
   flex-direction: column;
   max-width: 80%;
-  margin-left: 10%;
+  margin: 30px auto;
   border: 1px solid #bbbbbb;
   border-radius: 10px;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 3);
-  margin-bottom: 30px;
 }
-.detail-img-res-container {
+.imgResContainer {
   display: flex;
   margin: 10px 10px;
 }
-.detail-img-res-container div {
+.imgResContainer div {
   width: 100%;
   font-size: 14px;
   border-radius: 5px;
   border: 1px solid #bbbbbb;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 3);
 }
-.detail-img-res-container img {
+.imgResContainer img {
   border-radius: 5px;
   border: 1px solid #bbbbbb;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 3);
   margin-right: 15px;
   width: 350px;
 }
-.detail-bullet-container {
-  width: 80%;
-  margin-left: 10%;
+.bulletContainer {
+  width: auto;
+  margin: auto;
+  padding: 5px 10px;
   display: flex;
   justify-content: center;
   border: 1px solid #bbbbbb;
   border-radius: 20px;
   /* box-shadow: 0px 0px 20px rgba(0, 0, 0, 3); */
   flex-wrap: wrap;
+}
+.score {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  justify-content: space-around;
+}
+.dietBullets {
+  background-color: rgba(183, 240, 183, 0.592);
+  cursor: default;
+  margin: 5px 5px;
+  border-radius: 10px;
+  padding: 2px 4px;
+  transition: 0.3s;
+}
+.dietBullets:hover {
+  transform: scale(1.1);
+  background-color: rgba(9, 250, 9, 0.592);
 }

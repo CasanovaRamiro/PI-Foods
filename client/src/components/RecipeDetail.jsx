@@ -20,30 +20,33 @@ export default function RecipeDetail() {
     <div>
       <Nav />
 
-      <div className="detail-container">
+      <div className={css.container}>
         <h1>{recipeDetail.name}</h1>
-        <div className="detail-img-res-container">
+        <div className={css.imgResContainer}>
           <img src={recipeDetail.img} alt="recipe img" />
           <div><h1>Resume:</h1><p dangerouslySetInnerHTML={{ __html: recipeDetail.dishRes }}></p></div>
 
         </div>
         <h3>Diets:</h3>
-        <div className="detail-bullet-container">
+        <div className={css.bulletContainer}>
 
           {diet?.map((e) => {
             return (
-              e.name ? <p className="diet-bullets" key={e.name}>
+              e.name ? <p className={css.dietBullets} key={e.name}>
                 {e.name}
               </p>
-                : <p className="diet-bullets" key={e}>
+                : <p className={css.dietBullets} key={e}>
                   {e}
                 </p>
             );
           })}
         </div>
-        <h4>Dish Score: {recipeDetail.dishScore ? recipeDetail.dishScore : recipeDetail.healthyScore}</h4>
-        <h4>Healthy Score: {recipeDetail.healthyScore}</h4>
+        <div className={css.score}>
+          {recipeDetail.dishScore && <h4>Dish Score: {recipeDetail.dishScore}</h4>}
+          <h4>Healthy Score: {recipeDetail.healthyScore}</h4>
+        </div>
         <h4>Step By Step:</h4>
+
         <h4>{recipeDetail.stepByStep}</h4>
       </div>
     </div>
